@@ -1,0 +1,21 @@
+init;
+Mx1 = -5:0.1:5; Mx2 = -5:0.1:5;
+[X1,X2] = meshgrid(Mx1,Mx2);
+Gx=[1 0;0 1];
+A=[cos(pi/6) -sin(pi/6);sin(pi/6) cos(pi/6)]*[1 0;0,3];
+Gy=A*Gx*A';
+xbar=[1;2];
+ybar=A*xbar+[2;-5];
+dX1=X1-xbar(1);  dX2=X2-xbar(2);
+dY1=X1-ybar(1);  dY2=X2-ybar(2);
+invGx=inv(Gx);
+invGy=inv(Gy);
+Qx=invGx(1,1)*(dX1.^2)+2*(invGx(1,2)*dX1.*dX2)+(invGx(2,2)*dX2.^2);
+Qy=invGy(1,1)*(dY1.^2)+2*(invGy(1,2)*dY1.*dY2)+(invGy(2,2)*dY2.^2);
+Zx=(1/((2*pi)*sqrt(det(Gx))))*exp(-(1/2)*Qx);
+Zy=(1/((2*pi)*sqrt(det(Gy))))*exp(-(1/2)*Qy);
+%contour3(X1,X2,Zx,20,'black');
+%surface(X1,X2,Zx);
+contour3(X1,X2,Zy,20,'black');
+surface(X1,X2,Zy);
+
