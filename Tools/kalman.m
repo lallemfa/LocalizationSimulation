@@ -1,9 +1,9 @@
 function [x1,G1,xup,Gup]=kalman(x0,G0,u,y,Galpha,Gbeta,A,C)
 
-      if (isempty(y)), % When not output (predictor), 
+      if (isempty(y)) % When not output (predictor), 
           n=length(x0);
           y=eye(0,1); Gbeta=eye(0,0); C=eye(0,n);
-      end;
+      end
       
       S = C*G0*C'+Gbeta; 
       K = G0*C'/S;

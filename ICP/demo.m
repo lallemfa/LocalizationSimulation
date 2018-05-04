@@ -5,7 +5,7 @@
 %
 % Jakob Wilm and Martin Kjer, Technical University of Denmark, 2012
 
-m = 80; % width of grid
+m = 500; % width of grid
 n = m^2; % number of points
 
 [X,Y] = meshgrid(linspace(-2,2,m), linspace(-2,2,m));
@@ -55,7 +55,7 @@ M = M + 0.01*randn(3,n);
 D = D + 0.01*randn(3,n);
 
 %% Run ICP (standard settings)
-[Ricp Ticp ER t] = icp(M, D, 15);
+[Ricp Ticp ER t] = icp(M, D, 15, 'Matching', 'Delaunay', 'Extrapolation', true);
 
 % Transform data-matrix using ICP result
 Dicp = Ricp * D + repmat(Ticp, 1, n);

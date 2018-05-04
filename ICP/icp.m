@@ -253,7 +253,7 @@ for k=1:arg.iter
         dq(:,k+1) = qq(:,k+1) - qq(:,k);
         theta(k+1) = (180/pi)*acos(dot(dq(:,k),dq(:,k+1))/(norm(dq(:,k))*norm(dq(:,k+1))));
         if arg.Verbose
-            disp(['Direction change ' num2str(theta(k+1)) ' degree in iteration ' num2str(k)]);
+            % disp(['Direction change ' num2str(theta(k+1)) ' degree in iteration ' num2str(k)]);
         end
         if k>2 && theta(k+1) < 10 && theta(k) < 10
             d = [ER(k+1), ER(k), ER(k-1)];
@@ -422,17 +422,17 @@ v1 = -p1(2)/p1(1); % linear zero crossing
 v2 = -p2(2)/(2*p2(1)); % polynomial top point
 
 if issorted([0 v2 v1 vmax]) || issorted([0 v2 vmax v1])
-    disp('Parabolic update!');
+    % disp('Parabolic update!');
     dv = v2;
 elseif issorted([0 v1 v2 vmax]) || issorted([0 v1 vmax v2])...
         || (v2 < 0 && issorted([0 v1 vmax]))
-    disp('Line based update!');
+    % disp('Line based update!');
     dv = v1;
 elseif v1 > vmax && v2 > vmax
-    disp('Maximum update!');
+    % disp('Maximum update!');
     dv = vmax;
 else
-    disp('No extrapolation!');
+    % disp('No extrapolation!');
     dv = 0;
 end
 

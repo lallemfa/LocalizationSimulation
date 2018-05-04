@@ -19,7 +19,7 @@ s = surf(WE, SN, Bathy);
 s.EdgeColor = 'none';
 
 Geo_WE = Geo_WestEast(1501:2000);
-Geo_SN = Geo_SouthNorth(1501:2000);
+Geo_SN = Geo_SouthNorth(2601:3100);
 UTM_WE = UTM_WestEast(1501:2000);
 UTM_SN = UTM_SouthNorth(2601:3100);
 depth  = Bathy(2601:3100, 1501:2000);
@@ -30,4 +30,30 @@ s = surf(mesh_UTM_WE, mesh_UTM_SN, depth);
 s.EdgeColor = 'none';
 
 save('../reduced_bathy.mat', 'Geo_WE', 'Geo_SN', 'UTM_WE', 'UTM_SN', 'depth');
+
+Geo_WE = Geo_WestEast(1701:1800);
+Geo_SN = Geo_SouthNorth(2801:2900);
+UTM_WE = UTM_WestEast(1701:1800);
+UTM_SN = UTM_SouthNorth(2801:2900);
+depth  = Bathy(2801:2900, 1701:1800);
+[mesh_UTM_WE, mesh_UTM_SN] = meshgrid(UTM_WE, UTM_SN);
+
+figure;
+s = surf(mesh_UTM_WE, mesh_UTM_SN, depth);
+s.EdgeColor = 'none';
+
+save('../ICP_data_flat.mat', 'depth');
+
+Geo_WE = Geo_WestEast(1801:1900);
+Geo_SN = Geo_SouthNorth(2601:2700);
+UTM_WE = UTM_WestEast(1801:1900);
+UTM_SN = UTM_SouthNorth(2601:2700);
+depth  = Bathy(2601:2700, 1801:1900);
+[mesh_UTM_WE, mesh_UTM_SN] = meshgrid(UTM_WE, UTM_SN);
+
+figure;
+s = surf(mesh_UTM_WE, mesh_UTM_SN, depth);
+s.EdgeColor = 'none';
+
+save('../ICP_data_steep.mat', 'depth');
 
